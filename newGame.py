@@ -163,9 +163,12 @@ def drawMap(myState):
 def playGame():
     myState = GameState()
     playing = True
-
+    operating = input("Are you using windows or mac os (w/m): ")
     while playing:
-        os.system("cls")
+        if 'm' in operating:
+            os.system("clear")
+        elif 'w' in operating:
+            os.system("cls")
         drawMap(myState)
         cmd = input("Direction (w,a,s,d or q): ")
     
