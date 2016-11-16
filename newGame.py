@@ -60,6 +60,22 @@ X   X+X                 X      X
 X     X                 X      X
 XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 """
+myMap5 = """
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+X     X     X   X      X    X  X
+X     X     X   X      X    X  X
+X     X     XX XX      XX  XX  X
+X                              X
+X     X     XXXXXXX            X
+X     X     X     X            X
+X     X     X     X            X
+X     X     X     X            X
+XXX XXX     XXX XXX     XXX  XXX
+X   X X                 X      X
+X     X                 X      X
+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+"""
+
 rowLength = 33
 class GameState:
     locX = 7
@@ -72,20 +88,21 @@ def loc2Map(myState) :
 
 def stewart(myState):
     print ("Hello there traveler!")
-    input ("answer:")
-    print ("Can you go get my sack that I left in the town.")
+    input ("answer: ")
+    print ("Can you go get my sack that I left in the town?")
     respond = input ("y/n: ")
-    if respond == "y":
+    if "y" in respond:
         input ("Ok, hurry back.")
         myState.Map = myMap3
-    else:
-        input ("If you ever feel like helping me out come on back.")
         
+    else:
+        input ("If you ever feel like helping me out come on back.")     
 def nextLevel(myState):
         global myMap
         global myMap2
         global myMap3
         global myMap4
+        global myMap5
         if myState.Map == myMap:
             nextMap = myMap2
             myState.locX = 1
@@ -94,11 +111,14 @@ def nextLevel(myState):
             nextMap = myMap3
         if myState.Map == myMap3:
             nextMap = myMap4
+        if myState.Map == myMap4:
+            nextMap = myMap5
         myState.Map = nextMap
         return myState
 
 def move(direction, myState): 
     loc = loc2Map(myState)
+    
     if "w" in direction:
         if myState.Map[loc - rowLength + 1] == "@":
                 stewart(myState)
@@ -137,6 +157,7 @@ def move(direction, myState):
 def drawMap(myState):
     mapLocation = loc2Map(myState)
     currentMap = myState.Map[:(mapLocation+1)] + "O" + myState.Map[(mapLocation+2):] # +2 kills the space
+    # +1 is required due to the newline in the beginning
     print(currentMap)
 
 def playGame():
@@ -150,7 +171,7 @@ def playGame():
     
         if "w" in cmd or "a" in cmd or "s" in cmd or "d" in cmd:
             move(cmd, myState)
-        elif cmd == 'q':
+        elif "q" in cmd:
             playing = False
 
     print("Goodbye!")
