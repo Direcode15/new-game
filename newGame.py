@@ -119,7 +119,7 @@ def nextLevel(myState):
 def move(direction, myState): 
     loc = loc2Map(myState)
     
-    if "w" in direction:
+	    if "w" in direction:
         if myState.Map[loc - rowLength + 1] == "@":
                 stewart(myState)
         elif myState.Map[loc - rowLength + 1] == "/":
@@ -129,7 +129,7 @@ def move(direction, myState):
 
     elif "s" in direction:
         if myState.Map[loc + rowLength + 1] == "@":
-                stewart(myState)
+	                stewart(myState)
         elif myState.Map[loc + rowLength + 1] == "/":
                 nextLevel(myState)
         elif myState.Map[loc + rowLength + 1] != "X":
@@ -178,5 +178,6 @@ def playGame():
             playing = False
 
     print("Goodbye!")
-
+    exit()
+	
 playGame()
