@@ -119,7 +119,7 @@ def nextLevel(myState):
 def move(direction, myState): 
     loc = loc2Map(myState)
     
-	    if "w" in direction:
+    if "w" in direction:
         if myState.Map[loc - rowLength + 1] == "@":
                 stewart(myState)
         elif myState.Map[loc - rowLength + 1] == "/":
